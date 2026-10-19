@@ -1,7 +1,7 @@
 # NYNTH publishing integration
 
 ## Status
-Code prepared for a dedicated Supabase project. No existing database has been changed. Live provisioning, login and end-to-end publishing still require project selection and configuration. Public demo references are now in docs/reference, not hosted under public/. No public page links to the studio.
+Dedicated project nynth-studio (vujxdehigwehndgaprmm, eu-west-1) is provisioned in the organization approved by Joel. The editorial migration is applied. RLS is enabled on both tables, role assignment is denied to normal users, and the media bucket is private with a 3 MB limit. Supabase security advisors returned no findings. Other projects were not changed. Live login and end-to-end publishing still require Auth and deployment configuration. Public demo references are now in docs/reference, not hosted under public/. No public page links to the studio.
 
 ## Activate
 1. Create/select a dedicated NYNTH Supabase project in the organization approved by Joel. Do not reuse devblog, invoice-app2 or Flexed.
@@ -34,3 +34,6 @@ The policy test applies the actual migration to local PGlite with minimal auth/s
 - Local policy harness passed draft isolation, membership escalation rejection, contributor ownership, upload ownership and publish/unpublish visibility.
 - Production HTTP checks passed for homepage, archive, founder article, setup-pending login, studio/edit redirects to login, absence of public studio links and removal of the old public admin demo (404). Missing articles render the not-found page with noindex; Next streaming returns HTTP 200 for this route.
 - Live Auth/Storage, email delivery, deployment and browser visual/keyboard verification remain pending. No existing Supabase project was modified.
+
+## Activation blockers
+Vercel connector returned HTTP 403 for team joelsoyemi-clouds-projects on 19 October 2026. No Vercel CLI is available. Browser fallback needs user approval. Supabase connector does not expose Auth configuration or invitation management; public signup must still be disabled and the verified admin account provisioned through an authorized dashboard session. Do not mark this production-ready until live login/upload/publish tests pass.
